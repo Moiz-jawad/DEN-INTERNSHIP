@@ -19,7 +19,7 @@ Build a timed quiz app that displays questions one-by-one, accepts user input, a
 - ⏱️ 10-second countdown per question (auto-skip if time runs out)  
 - 🎉 Animated result screen with score  
 - 🎨 Clean, modern UI with a background image  
-- 🔊 Sound effects & smooth transitions  
+- 🦋 Smooth transitions  
 
 ---
 
