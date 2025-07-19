@@ -1,16 +1,26 @@
-# quiz_application
+# 🧠 Flutter MCQ Quiz App
 
-A new Flutter project.
+A simple and elegant **Flutter quiz app** that presents 5 multiple-choice questions with a countdown timer and final score summary.
 
-## Getting Started
+## 🚀 Features
 
-This project is a starting point for a Flutter application.
+- 5 multiple-choice questions  
+- 10-second countdown with auto-skip  
+- Result screen with score  
+- Smooth animations and sound effects  
+- Clean UI with a background image
 
-A few resources to get you started if this is your first Flutter project:
+## 🧭 Navigation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Home → Quiz → Result
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠 Setup
+
+1. Clone the repo:
+       git clone https://github.com/your-username/flutter-quiz-app.git
+   
+Install dependencies:
+      flutter pub get
+
+Run the app:
+    flutter run
