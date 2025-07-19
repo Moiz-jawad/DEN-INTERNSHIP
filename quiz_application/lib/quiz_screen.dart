@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_application/question.dart';
 
@@ -133,16 +134,27 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          // White gradient overlay
+          // Background Image
           Container(
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.white, Color.fromARGB(255, 205, 195, 195)],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+              image: DecorationImage(
+                image: AssetImage('assets/images/quiz_bg-pic.jpg'),
+                fit: BoxFit.cover,
               ),
             ),
           ),
+
+          // Liquid Glass Effect (Blur + Transparent Overlay)
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+            child: Container(
+              color: Colors.white.withOpacity(
+                0.08,
+              ), // adjust opacity for stronger glass feel
+            ),
+          ),
+
+          // Quiz Content
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -160,13 +172,14 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),
                         ),
                         Text(
                           'Score: $_totalScore',
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Colors.black54,
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -192,7 +205,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                       width: double.infinity,
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.white.withOpacity(0.9),
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
