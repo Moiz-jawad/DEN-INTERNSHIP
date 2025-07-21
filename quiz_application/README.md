@@ -12,6 +12,8 @@ A simple and elegant **Flutter quiz app** that presents 5 multiple-choice questi
 
 ## 🧭 Navigation
 
+![imagealt](https://github.com/Moiz-jawad/DEN-INTERNSHIP/blob/a43c72e3a76d2d73617b3c028003db9a32eb38bb/quiz_application/quiz-app_ss.jpg)
+
 Home → Quiz → Result
 
 ## 🛠 Setup
