@@ -14,13 +14,16 @@ A simple and elegant **Flutter quiz app** that presents 5 multiple-choice questi
 
 Home → Quiz → Result
 
+![imagealt](https://github.com/Moiz-jawad/DEN-INTERNSHIP/blob/a43c72e3a76d2d73617b3c028003db9a32eb38bb/quiz_application/quiz-app_ss.jpg)
+
+
 ## 🛠 Setup
 
 1. Clone the repo:
-       git clone https://github.com/your-username/flutter-quiz-app.git
+                     git clone https://github.com/your-username/flutter-quiz-app.git
    
-Install dependencies:
-      flutter pub get
+2. Install dependencies:
+                           flutter pub get
 
-Run the app:
-    flutter run
+3. Run the app:
+                  flutter run
