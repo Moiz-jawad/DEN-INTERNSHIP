@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_application/question.dart';
 
