@@ -1,33 +1,46 @@
-# 📚 DEN Internship – Week 6
+# DEN Internship – Flutter Productivity Suite
 
-      #TASKNO.1 
-**Flutter MCQ Quiz App**
-
-This project is part of **Week 6** of the **Digital Empowerment Network (DEN) Internship Program**. The task was to build an interactive multiple-choice quiz app using **Flutter**.
+This repository contains the work completed during my internship at **DEN (Digital Empowerment Networking)**. It features two Flutter-based projects focused on UI/UX, logic structuring, and production-ready state management.
 
 ---
 
-## 🎯 Objective
+## 📁 Projects
 
-Build a timed quiz app that displays questions one-by-one, accepts user input, and shows a result screen with a final score.
+### ➤ [Task Manager](/task_manager/)
+A modern task management app with:
+- Category & priority filters  
+- Local SQLite storage  
+- Completion toggles & elegant animations  
+- Provider-based state management  
+
+### ➤ [Quiz App](/quiz/)
+A timed multiple-choice quiz app featuring:
+- Auto-skipping questions on timeout  
+- Countdown animation & sound effects  
+- Final score summary screen  
+- Lightweight and responsive UI  
 
 ---
 
-## 💡 Features
-
-- 🧠 5 MCQ-based questions  
-- ⏱️ 10-second countdown per question (auto-skip if time runs out)  
-- 🎉 Animated result screen with score  
-- 🎨 Clean, modern UI with a background image  
-- 🦋 Smooth transitions  
+## 🚀 Tech Stack
+- **Flutter 3.22**  
+- **Provider** for state management  
+- **Sqflite** for offline database  
+- Lottie, Shimmer, and custom animation packages
 
 ---
 
-## 🛠️ Tech Stack
+## 📌 About DEN
+**Digital Empowerment Networking (DEN)** is a tech-forward organization committed to empowering developers with real-world digital product experience.
 
-- Flutter (Dart)
-- Material Design
-- Provider (optional for state management)
+> This internship helped me explore clean architecture, animation integration, and Flutter production practices.
 
+---
 
+## 🛠️ Getting Started
 
+```bash
+git clone https://github.com/MoizSahito/den-internship-projects.git
+cd task_manager   # or cd quiz
+flutter pub get
+flutter run
