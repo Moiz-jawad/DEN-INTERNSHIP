@@ -26,7 +26,7 @@ A beautiful and highly interactive Flutter task manager app with real-time filte
 
 | Splash Screen | Task List | Add/Edit Task |
 |---------------|------------|----------------|
-| ![Splash](assets/screenshots/splash.png) | ![TaskList](assets/screenshots/tasklist.png) | ![AddEdit](assets/screenshots/addedit.png) |
+| ![Splash](assets/screenshots/splash.png) | ![TaskList](assets/screenshots/taskList.png) | ![AddEdit](assets/screenshots/taskAdd.png) |
 
 > ℹ️ To add your screenshots:  
 > 1. Run the app  
