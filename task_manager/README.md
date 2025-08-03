@@ -63,9 +63,9 @@ Implement a **Login & Registration** system using Firebase Authentication and Fi
 |---------------|------------|----------------|
 | ![Splash](assets/screenshots/splash.png) | ![TaskList](assets/screenshots/taskList.png) | ![AddEdit](assets/screenshots/taskAdd.png) |
 
-| Auth Screen | Alert Box (Login Error) |
-|--------------|--------------------------|
-| ![Auth](assets/screenshots/auth_screen.png) | ![Alert](assets/screenshots/alert_box.png) |
+| Auth Screen | Alert Box  | Welcome message|
+|-------------|------------|----------------|
+| ![Auth](assets/screenshots/auth_screen.png) | ![Alert](assets/screenshots/alert_box.png) |  ![Welcome] (assets/screenshots/alert_box.png)|
 
 > ℹ️ To add your screenshots:
 > - Save them in `assets/screenshots/`
