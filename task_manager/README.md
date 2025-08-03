@@ -65,7 +65,7 @@ Implement a **Login & Registration** system using Firebase Authentication and Fi
 
 | Auth Screen | Alert Box  | Welcome message|
 |-------------|------------|----------------|
-| ![Auth](assets/screenshots/auth_screen.png) | ![Alert](assets/screenshots/alert_box.png) |  ![Welcome] (assets/screenshots/alert_box.png)|
+| ![Auth](assets/screenshots/auth_screen.png) | ![Alert](assets/screenshots/alert_box.png) | ![Welcome](assets/screenshots/welcome_mesg.png) |
 
 > ℹ️ To add your screenshots:
 > - Save them in `assets/screenshots/`
