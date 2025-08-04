@@ -11,8 +11,13 @@ A modern task management app with:
 - Category & priority filters  
 - Local SQLite storage  
 - Completion toggles & elegant animations  
-- Provider-based state management  
+- Provider-based state management
+-  Firebase Authentication – Login/Signup with user profiles
+-  Welcome message with user's name after login
+-  Persistent login state using SharedPreferences
+-  Last login time stored in Realtime Database
 
+   
 ### ➤ [Quiz App](/quiz_application/)
 A timed multiple-choice quiz app featuring:
 - Auto-skipping questions on timeout  
