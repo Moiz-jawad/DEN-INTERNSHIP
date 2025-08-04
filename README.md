@@ -13,7 +13,7 @@ A modern task management app with:
 - Completion toggles & elegant animations  
 - Provider-based state management  
 
-### ➤ [Quiz App](/quiz/)
+### ➤ [Quiz App](/quiz_application/)
 A timed multiple-choice quiz app featuring:
 - Auto-skipping questions on timeout  
 - Countdown animation & sound effects  

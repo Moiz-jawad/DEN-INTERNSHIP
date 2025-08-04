@@ -1,4 +1,3 @@
-
 # 🌌 TaskOrbit
 
 [![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://flutter.dev)
@@ -6,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)](https://github.com/moizsahto)
 
-A beautiful and highly interactive Flutter task manager app with real-time filtering, priority-based task separation, and stunning animations like shimmer and glassmorphism.
+A beautiful and highly interactive Flutter task manager app with real-time filtering, priority-based task separation, Firebase Authentication, and stunning animations like shimmer and glassmorphism.
 
 ---
 
@@ -14,6 +13,10 @@ A beautiful and highly interactive Flutter task manager app with real-time filte
 
 - 🧠 Filter tasks by **category** or **priority**
 - ✅ Toggle **completion status** with visual feedback
+- 🔐 Firebase Authentication – Login/Signup with user profiles
+- 👤 Welcome message with user's name after login
+- 💾 Persistent login state using SharedPreferences
+- 📅 Last login time stored in Realtime Database
 - 🎨 Shimmer loading effects
 - 💎 Glassmorphic UI panels
 - 🗂 SQLite local storage for offline access
@@ -22,104 +25,77 @@ A beautiful and highly interactive Flutter task manager app with real-time filte
 
 ---
 
+## 🔐 User Authentication (Firebase)
+
+### Objective
+
+Implement a **Login & Registration** system using Firebase Authentication and Firebase Realtime Database, integrated seamlessly into TaskOrbit.
+
+### 🔧 Implemented Features
+
+1. **Register New User**
+   - Email and password registration using Firebase Authentication.
+   - Store user profile (name, email, last login time) in Firebase Realtime Database.
+
+2. **Login Existing User**
+   - Login with Firebase Authentication.
+   - Retrieve user profile from Realtime Database.
+   - Show welcome message with user's name.
+
+3. **Form Validation and Feedback**
+   - Checks for empty fields and invalid inputs.
+   - Displays loading indicators and real-time error messages.
+
+4. **App Integration**
+   - Auth screen is the app’s entry point.
+   - After login, users are navigated to the Task List screen.
+
+5. **Architecture**
+   - MVVM pattern used (AuthViewModel, UserProvider).
+   - Auth logic separated from UI.
+   - Persistent session with SharedPreferences.
+
+---
+
 ## 📸 Screenshots
 
 | Splash Screen | Task List | Add/Edit Task |
 |---------------|------------|----------------|
-| ![Splash](assets/screenshots/splash.png) | ![TaskList](assets/screenshots/tasklist.png) | ![AddEdit](assets/screenshots/addedit.png) |
+| ![Splash](assets/screenshots/splash.png) | ![TaskList](assets/screenshots/taskList.png) | ![AddEdit](assets/screenshots/taskAdd.png) |
 
-> ℹ️ To add your screenshots:  
-> 1. Run the app  
-> 2. Capture using emulator or real device  
-> 3. Save in `assets/screenshots/` and link above.
+| Auth Screen | Alert Box  | Welcome message|
+|-------------|------------|----------------|
+| ![Auth](assets/screenshots/auth_screen.png) | ![Alert](assets/screenshots/alert_box.png) | ![Welcome](assets/screenshots/welcome_mesg.png) |
+
+> ℹ️ To add your screenshots:
+> - Save them in `assets/screenshots/`
+> - Add entries in `pubspec.yaml` under `assets:`
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1. Clone the Repo
-
-```bash
+```bash```
 git clone https://github.com/your-username/taskorbit.git
 cd taskorbit
-```
 
 ### 2. Install Dependencies
-
-```bash
+bash
+Copy
+Edit
 flutter pub get
-```
 
-### 3. Run the App
+### 3. Firebase Setup
+Create a Firebase project.
 
-```bash
+Enable Email/Password Authentication in Firebase Console.
+
+Enable Realtime Database (in test mode for development).
+
+Download google-services.json and place it in android/app/.
+
+### 4. Run the App
+
 flutter run
-```
 
----
-
-## 🧪 Optional: Auto-Screenshot Integration Test
-
-Create a test file at: `integration_test/screenshot_test.dart`
-
-```dart
-import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
-import 'package:taskorbit/main.dart' as app;
-
-void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-
-  testWidgets("Take UI screenshots", (WidgetTester tester) async {
-    app.main();
-    await tester.pumpAndSettle();
-
-    await tester.binding.takeScreenshot('assets/screenshots/splash.png');
-
-    // Navigate to Task List (if needed) and take more screenshots
-  });
-}
-```
-
-Then run:
-
-```bash
-flutter test integration_test/screenshot_test.dart
-```
-
----
-
-## 📂 Folder Structure (Simplified)
-
-```
-lib/
-├── main.dart
-├── models/
-│   └── task.dart
-├── providers/
-│   └── task_provider.dart
-├── screens/
-│   ├── splash_screen.dart
-│   └── task_list_screen.dart
-├── services/
-│   └── database_service.dart
-├── widgets/
-│   ├── task_card.dart
-│   └── glass_panel.dart
-assets/
-└── screenshots/
-```
-
----
-
-## 📃 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 🙌 Contributions
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
-
-Made with ❤️ by [Moiz Sahto](https://github.com/moizsahto)
