@@ -1,21 +1,82 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import '../models/auth_viewmodel.dart';
 import '../providers/task_provider.dart';
 import '../models/task.dart';
+import '../providers/user_provider.dart';
 import '../widgets/task_card.dart';
 import 'add_edit_task_screen.dart';
 
-class TaskListScreen extends StatelessWidget {
+class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+  State<TaskListScreen> createState() => _TaskListScreenState();
+}
 
+class _TaskListScreenState extends State<TaskListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    authViewModel.fetchUserProfile(); // ensures Firestore name is loaded
+    Future.microtask(() {
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      userProvider.loadUserProfile();
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final authProvider = Provider.of<AuthViewModel>(context, listen: false);
+    authProvider.fetchUserProfile(); // Fetch user name and email
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final authViewModel = context.watch<AuthViewModel>();
+    final userProvider = Provider.of<UserProvider>(context);
+
+    // final userName = authViewModel.userName;
+    final userEmail = authViewModel.userEmail;
+
+    final theme = Theme.of(context);
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                userProvider.isLoading
+                    ? 'Loading...'
+                    : 'Welcome, ${userProvider.userName ?? 'Guest'}',
+                style: const TextStyle(fontSize: 18),
+              ),
+              accountEmail: Text('Email: ${userEmail ?? "Not logged in"}'),
+              currentAccountPicture: const CircleAvatar(
+                child: Icon(Icons.person, size: 30),
+              ),
+            ),
+            const Spacer(),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.redAccent),
+              title: const Text(
+                'Logout',
+                style: TextStyle(color: Colors.redAccent),
+              ),
+              onTap: () => _showLogoutConfirmation(context),
+            ),
+            const SizedBox(height: 12),
+          ],
+        ),
+      ),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -202,6 +263,34 @@ class TaskListScreen extends StatelessWidget {
   void _navigateToEditTask(BuildContext context, Task task) {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => AddEditTaskScreen(task: task)));
+  }
+
+  void _showLogoutConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text("Confirm Logout"),
+        content: const Text("Are you sure you want to logout?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text("Cancel"),
+          ),
+          ElevatedButton.icon(
+            onPressed: () async {
+              Navigator.pop(ctx);
+              await Provider.of<AuthViewModel>(context, listen: false).logout();
+              Navigator.of(context).pushReplacementNamed('/login');
+            },
+            icon: const Icon(Icons.logout),
+            label: const Text("Logout"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.redAccent,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void _showDeleteConfirmation(BuildContext context, Task task) {

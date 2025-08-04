@@ -2,8 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'task_list_screen.dart';
+import 'auth_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -33,17 +36,22 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _scaleAnimation = Tween<double>(begin: 0.85, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.elasticOut,
-      ),
+      CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
     );
 
     _animationController.forward();
 
-    Future.delayed(const Duration(seconds: 4), () {
+    // Wait 6 seconds before navigating safely
+    Future.delayed(const Duration(seconds: 6), () async {
+      final user = FirebaseAuth.instance.currentUser;
+
+      if (!mounted) return; // Safe navigation
+
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const TaskListScreen()),
+        MaterialPageRoute(
+          builder: (_) =>
+              user != null ? const TaskListScreen() : const AuthScreen(),
+        ),
       );
     });
   }
@@ -57,74 +65,78 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 215, 218, 38),
-              Color(0xFF1A2A6C),
-              Color.fromARGB(255, 38, 142, 247),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+      body: Stack(
+        children: [
+          // Gradient background
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 215, 218, 38),
+                  Color(0xFF1A2A6C),
+                  Color.fromARGB(255, 38, 142, 247),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
           ),
-        ),
-        child: Center(
-          child: FadeTransition(
-            opacity: _fadeAnimation,
-            child: ScaleTransition(
-              scale: _scaleAnimation,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Lottie animation with glow
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    child: SizedBox(
+
+          // Main splash content with animation
+          Center(
+            child: FadeTransition(
+              opacity: _fadeAnimation,
+              child: ScaleTransition(
+                scale: _scaleAnimation,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Lottie animated logo
+                    SizedBox(
                       height: 200,
                       width: 200,
                       child: Lottie.asset(
                         'assets/lottie/task.json',
-                        fit: BoxFit.contain,
                         repeat: true,
+                        fit: BoxFit.contain,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'TaskOrbit',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontFamily: 'Montserrat',
-                      letterSpacing: 1.5,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black45,
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Shimmer.fromColors(
-                    baseColor: Colors.white60,
-                    highlightColor: Colors.white,
-                    child: const Text(
-                      'Organize your life',
+                    const SizedBox(height: 24),
+                    const Text(
+                      'TaskOrbit',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontStyle: FontStyle.italic,
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontFamily: 'Montserrat',
+                        letterSpacing: 1.5,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black45,
+                            offset: Offset(0, 3),
+                            blurRadius: 6,
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 12),
+                    Shimmer.fromColors(
+                      baseColor: Colors.white60,
+                      highlightColor: Colors.white,
+                      child: const Text(
+                        'Organize your life',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

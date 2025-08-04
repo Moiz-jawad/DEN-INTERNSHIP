@@ -1,22 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:my_tasks/models/auth_viewmodel.dart';
+import 'package:my_tasks/providers/task_provider.dart';
+import 'package:my_tasks/services/shared_preferences_service.dart';
+import 'package:my_tasks/root_page.dart';
+
 import 'package:provider/provider.dart';
-import 'screens/splash_screen.dart';
-import 'providers/task_provider.dart';
-import 'services/database_service.dart';
+import 'providers/auth_provider.dart';
+import 'providers/user_provider.dart';
+import 'services/auth_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseService.instance.database; // Initialize database
-  runApp(const MyApp());
+  await Firebase.initializeApp();
+  await SharedPreferencesService.init();
+  FirebaseFirestore.instance.settings =
+      const Settings(persistenceEnabled: true);
+  // Initialize database
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AuthService _authService = AuthService();
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => TaskProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider<AuthProviders>(
+          create: (_) => AuthProviders(_authService),
+        ),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => TaskProvider()),
+      ],
       child: MaterialApp(
         title: 'My Tasks',
         theme: ThemeData(
@@ -31,7 +50,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.blue[600],
           ),
         ),
-        home: const SplashScreen(),
+        home: const RootPage(),
         debugShowCheckedModeBanner: false,
       ),
     );
