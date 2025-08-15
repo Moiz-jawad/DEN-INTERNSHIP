@@ -10,11 +10,10 @@ This repository contains the work completed during my internship at **DEN (Digit
 ### ➤ [Ad Mint](/ad_mint/)
 
 A Flutter app for managing and displaying ads with:
-	•	Banner, interstitial, and rewarded AdMob ads
-	•	Fast, responsive, and cross-platform UI
-	•	Easy ad unit configuration
- 
-	•	Hot reload for quick development
+•	Banner, interstitial, and rewarded AdMob ads
+•	Fast, responsive, and cross-platform UI
+•	Easy ad unit configuration
+•	Hot reload for quick development
 
 ### ➤ [Task Manager](/task_manager/)
 A modern task management app with:
