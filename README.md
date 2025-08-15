@@ -53,8 +53,8 @@ A timed multiple-choice quiz app featuring:
 
 ## 🛠️ Getting Started
 
-```bash
-git clone https://github.com/MoizSahito/den-internship-projects.git
-cd task_manager   # or cd quiz
+```bash```
+git clone https://github.com/xyz/den-internship-projects.git
+cd projec_xyz  # or cd xyz
 flutter pub get
 flutter run
