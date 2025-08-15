@@ -1,6 +1,6 @@
 # DEN Internship – Flutter Productivity Suite
 
-This repository contains the work completed during my internship at **DEN (Digital Empowerment Networking)**. It features two Flutter-based projects focused on UI/UX, logic structuring, and production-ready state management.
+This repository contains the work completed during my internship at **DEN (Digital Empowerment Networking)**. It features three Flutter-based projects focused on UI/UX, logic structuring, and production-ready state management, Firebase(Backend services) and adMob (runs Ads in app).
 
 ---
 
