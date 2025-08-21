@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "5851400513",
+    "project_id": "textnow-b2389",
+    "storage_bucket": "textnow-b2389.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5851400513:android:25bbc96730412ce71779c0",
+        "android_client_info": {
+          "package_name": "com.example.textify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe7Qv3-3KW01528zPpWU1Rdtg2MY4ymRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
