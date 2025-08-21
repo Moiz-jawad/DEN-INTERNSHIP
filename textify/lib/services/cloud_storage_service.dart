@@ -18,7 +18,7 @@ class CloudStorageService {
       Reference _ref =
           _storage.ref().child('images/users/$_uid/profile.${_file.extension}');
       UploadTask _task = _ref.putFile(
-        File(_file.path),
+        File(_file.path!),
       );
       return await _task.then(
         (_result) => _result.ref.getDownloadURL(),
@@ -26,6 +26,7 @@ class CloudStorageService {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   Future<String?> saveChatImageToStorage(
@@ -34,7 +35,7 @@ class CloudStorageService {
       Reference _ref = _storage.ref().child(
           'images/chats/$_chatID/${_userID}_${Timestamp.now().millisecondsSinceEpoch}.${_file.extension}');
       UploadTask _task = _ref.putFile(
-        File(_file.path),
+        File(_file.path!),
       );
       return await _task.then(
         (_result) => _result.ref.getDownloadURL(),
@@ -42,5 +43,6 @@ class CloudStorageService {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 
@@ -8,12 +8,11 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
 
-  CustomTextFormField({
-    required this.onSaved,
-    required this.regEx,
-    required this.hintText,
-    required this.obscureText,
-  });
+  CustomTextFormField(
+      {required this.onSaved,
+      required this.regEx,
+      required this.hintText,
+      required this.obscureText});
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +45,12 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   IconData? icon;
 
-  CustomTextField({
-    required this.onEditingComplete,
-    required this.hintText,
-    required this.obscureText,
-    required this.controller,
-    this.icon,
-  });
+  CustomTextField(
+      {required this.onEditingComplete,
+      required this.hintText,
+      required this.obscureText,
+      required this.controller,
+      this.icon});
 
   @override
   Widget build(BuildContext context) {

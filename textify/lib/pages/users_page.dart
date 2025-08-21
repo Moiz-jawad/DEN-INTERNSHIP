@@ -2,129 +2,153 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-//Widgets
-import '../widgets/custom_input_fields.dart';
-import '../widgets/rounded_button.dart';
-
 //Providers
 import '../providers/authentication_provider.dart';
-import '../providers/navigation_provider.dart'; // create a provider for NavigationService
+import '../providers/users_page_provider.dart';
 
-class LoginPage extends StatefulWidget {
+//Widgets
+import '../widgets/top_bar.dart';
+import '../widgets/custom_input_fields.dart';
+import '../widgets/custom_list_view_tiles.dart';
+import '../widgets/rounded_button.dart';
+
+//Models
+import '../models/chat_user.dart';
+
+class UsersPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _LoginPageState();
+  State<StatefulWidget> createState() {
+    return _UsersPageState();
+  }
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _UsersPageState extends State<UsersPage> {
   late double _deviceHeight;
   late double _deviceWidth;
 
   late AuthenticationProvider _auth;
-  late NavigationProvider _navigation;
+  late UsersPageProvider _pageProvider;
 
-  final _loginFormKey = GlobalKey<FormState>();
-
-  String? _email;
-  String? _password;
+  final TextEditingController _searchFieldTextEditingController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
-
-    _auth = Provider.of<AuthenticationProvider>(context, listen: false);
-    _navigation = Provider.of<NavigationProvider>(context, listen: false);
-
-    return _buildUI();
+    _auth = Provider.of<AuthenticationProvider>(context);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UsersPageProvider>(
+          create: (_) => UsersPageProvider(_auth),
+        ),
+      ],
+      child: _buildUI(),
+    );
   }
 
   Widget _buildUI() {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: _deviceWidth * 0.03,
-          vertical: _deviceHeight * 0.02,
-        ),
-        height: _deviceHeight * 0.98,
-        width: _deviceWidth * 0.97,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _pageTitle(),
-            SizedBox(height: _deviceHeight * 0.04),
-            _loginForm(),
-            SizedBox(height: _deviceHeight * 0.05),
-            _loginButton(),
-            SizedBox(height: _deviceHeight * 0.02),
-            _registerAccountLink(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _pageTitle() {
-    return Container(
-      height: _deviceHeight * 0.10,
-      child: Text(
-        'Chatify',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 40,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-
-  Widget _loginForm() {
-    return Container(
-      height: _deviceHeight * 0.18,
-      child: Form(
-        key: _loginFormKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomTextFormField(
-              onSaved: (value) => _email = value,
-              regEx:
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-              hintText: "Email",
-              obscureText: false,
-            ),
-            CustomTextFormField(
-              onSaved: (value) => _password = value,
-              regEx: r".{8,}",
-              hintText: "Password",
-              obscureText: true,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _loginButton() {
-    return RoundedButton(
-      name: "Login",
-      height: _deviceHeight * 0.065,
-      width: _deviceWidth * 0.65,
-      onPressed: () {
-        if (_loginFormKey.currentState!.validate()) {
-          _loginFormKey.currentState!.save();
-          _auth.loginUsingEmailAndPassword(_email!, _password!);
-        }
+    return Builder(
+      builder: (BuildContext _context) {
+        _pageProvider = _context.watch<UsersPageProvider>();
+        return Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: _deviceWidth * 0.03, vertical: _deviceHeight * 0.02),
+          height: _deviceHeight * 0.98,
+          width: _deviceWidth * 0.97,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TopBar(
+                'Users',
+                primaryAction: IconButton(
+                  icon: Icon(
+                    Icons.logout,
+                    color: Color.fromRGBO(0, 82, 218, 1.0),
+                  ),
+                  onPressed: () {
+                    _auth.logout();
+                  },
+                ),
+              ),
+              CustomTextField(
+                onEditingComplete: (_value) {
+                  _pageProvider.getUsers(name: _value);
+                  FocusScope.of(context).unfocus();
+                },
+                hintText: "Search...",
+                obscureText: false,
+                controller: _searchFieldTextEditingController,
+                icon: Icons.search,
+              ),
+              _usersList(),
+              _createChatButton(),
+            ],
+          ),
+        );
       },
     );
   }
 
-  Widget _registerAccountLink() {
-    return GestureDetector(
-      onTap: () => _navigation.navigateToRoute('/register'),
-      child: Text(
-        'Don\'t have an account?',
-        style: TextStyle(color: Colors.blueAccent),
+  Widget _usersList() {
+    List<ChatUser>? _users = _pageProvider.users;
+    return Expanded(child: () {
+      if (_users != null) {
+        if (_users.length != 0) {
+          return ListView.builder(
+            itemCount: _users.length,
+            itemBuilder: (BuildContext _context, int _index) {
+              return CustomListViewTile(
+                height: _deviceHeight * 0.10,
+                title: _users[_index].name,
+                subtitle: "Last Active: ${_users[_index].lastDayActive()}",
+                imagePath: _users[_index].imageURL,
+                isActive: _users[_index].wasRecentlyActive(),
+                isSelected: _pageProvider.selectedUsers.contains(
+                  _users[_index],
+                ),
+                onTap: () {
+                  _pageProvider.updateSelectedUsers(
+                    _users[_index],
+                  );
+                },
+              );
+            },
+          );
+        } else {
+          return Center(
+            child: Text(
+              "No Users Found.",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          );
+        }
+      } else {
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        );
+      }
+    }());
+  }
+
+  Widget _createChatButton() {
+    return Visibility(
+      visible: _pageProvider.selectedUsers.isNotEmpty,
+      child: RoundedButton(
+        name: _pageProvider.selectedUsers.length == 1
+            ? "Chat With ${_pageProvider.selectedUsers.first.name}"
+            : "Create Group Chat",
+        height: _deviceHeight * 0.08,
+        width: _deviceWidth * 0.80,
+        onPressed: () {
+          _pageProvider.createChat();
+        },
       ),
     );
   }

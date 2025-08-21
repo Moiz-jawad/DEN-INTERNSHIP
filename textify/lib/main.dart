@@ -1,9 +1,6 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-
 import 'package:flutter/material.dart';
 
 //Packages
-// import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:provider/provider.dart';
 
 //Services
@@ -23,15 +20,15 @@ void main() {
     SplashPage(
       key: UniqueKey(),
       onInitializationComplete: () {
-        runApp(MainApp());
+        runApp(
+          MainApp(),
+        );
       },
     ),
   );
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -40,7 +37,7 @@ class MainApp extends StatelessWidget {
           create: (BuildContext _context) {
             return AuthenticationProvider();
           },
-        ),
+        )
       ],
       child: MaterialApp(
         title: 'Chatify',

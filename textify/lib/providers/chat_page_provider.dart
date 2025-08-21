@@ -31,6 +31,7 @@ class ChatPageProvider extends ChangeNotifier {
   List<ChatMessage>? messages;
 
   late StreamSubscription _messagesStream;
+  // ignore: unused_field
   late StreamSubscription _keyboardVisibilityStream;
   late KeyboardVisibilityController _keyboardVisibilityController;
 
@@ -73,7 +74,7 @@ class ChatPageProvider extends ChangeNotifier {
           ).toList();
           messages = _messages;
           notifyListeners();
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) {
               if (_messagesListViewController.hasClients) {
                 _messagesListViewController.jumpTo(

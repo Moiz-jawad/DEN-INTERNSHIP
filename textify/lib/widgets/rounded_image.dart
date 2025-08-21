@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +5,11 @@ class RoundedImageNetwork extends StatelessWidget {
   final String imagePath;
   final double size;
 
-  const RoundedImageNetwork({
-    super.key,
+  RoundedImageNetwork({
+    required Key key,
     required this.imagePath,
     required this.size,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,9 @@ class RoundedImageNetwork extends StatelessWidget {
           fit: BoxFit.cover,
           image: NetworkImage(imagePath),
         ),
-        borderRadius: BorderRadius.circular(size / 2),
+        borderRadius: BorderRadius.all(
+          Radius.circular(size),
+        ),
         color: Colors.black,
       ),
     );
@@ -33,7 +34,11 @@ class RoundedImageFile extends StatelessWidget {
   final PlatformFile image;
   final double size;
 
-  const RoundedImageFile({super.key, required this.image, required this.size});
+  RoundedImageFile({
+    required Key key,
+    required this.image,
+    required this.size,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,43 +48,38 @@ class RoundedImageFile extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: FileImage(File(image.path)),
+          image: AssetImage(image.path!),
         ),
-        borderRadius: BorderRadius.circular(size / 2),
+        borderRadius: BorderRadius.all(Radius.circular(size)),
         color: Colors.black,
       ),
     );
   }
 }
 
-class RoundedImageNetworkWithStatusIndicator extends StatelessWidget {
-  final String imagePath;
-  final double size;
+class RoundedImageNetworkWithStatusIndicator extends RoundedImageNetwork {
   final bool isActive;
 
-  const RoundedImageNetworkWithStatusIndicator({
-    super.key,
-    required this.imagePath,
-    required this.size,
+  RoundedImageNetworkWithStatusIndicator({
+    required Key key,
+    required String imagePath,
+    required double size,
     required this.isActive,
-  });
+  }) : super(key: key, imagePath: imagePath, size: size);
 
   @override
   Widget build(BuildContext context) {
-    final double indicatorSize = size * 0.20;
-
     return Stack(
       clipBehavior: Clip.none,
       alignment: Alignment.bottomRight,
       children: [
-        RoundedImageNetwork(imagePath: imagePath, size: size),
+        super.build(context),
         Container(
-          height: indicatorSize,
-          width: indicatorSize,
+          height: size * 0.20,
+          width: size * 0.20,
           decoration: BoxDecoration(
             color: isActive ? Colors.green : Colors.red,
-            borderRadius: BorderRadius.circular(indicatorSize / 2),
-            border: Border.all(color: Colors.white, width: 2),
+            borderRadius: BorderRadius.circular(size),
           ),
         ),
       ],

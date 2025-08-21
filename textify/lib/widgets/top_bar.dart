@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_final_fields
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,6 @@ class TopBar extends StatelessWidget {
 
   TopBar(
     this._barTitle, {
-    super.key,
     this.primaryAction,
     this.secondaryAction,
     this.fontSize = 35,

@@ -9,7 +9,6 @@ import '../services/database_service.dart';
 import '../services/navigation_service.dart';
 
 //Models
-import '../models/chat_user.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   late final FirebaseAuth _auth;
@@ -73,6 +72,7 @@ class AuthenticationProvider extends ChangeNotifier {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   Future<void> logout() async {
