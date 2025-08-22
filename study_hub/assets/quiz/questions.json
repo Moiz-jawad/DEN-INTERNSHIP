@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "question": "What is the capital of France?",
+    "options": ["Paris", "Berlin", "Madrid", "Rome"],
+    "answerIndex": 0
+  },
+  {
+    "id": 2,
+    "question": "Which language runs in a web browser?",
+    "options": ["Java", "C", "Python", "JavaScript"],
+    "answerIndex": 3
+  },
+  {
+    "id": 3,
+    "question": "What is 2 + 2?",
+    "options": ["3", "4", "5", "22"],
+    "answerIndex": 1
+  },
+  {
+    "id": 4,
+    "question": "Flutter is developed by?",
+    "options": ["Facebook", "Google", "Microsoft", "Apple"],
+    "answerIndex": 1
+  },
+  {
+    "id": 5,
+    "question": "Which database is used in this app?",
+    "options": ["Realm", "SQLite", "Firestore", "Realtime Database"],
+    "answerIndex": 3
+  }
+]
