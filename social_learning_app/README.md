@@ -2,8 +2,6 @@
 
 A comprehensive Flutter-based social learning application that combines quiz-based learning, task management, real-time chat, and social interactions to create an engaging educational experience.
 
-![App Banner](assets/images/quiz_bg.jpg)
-
 ## ✨ Features
 
 ### 🧠 **Quiz Learning System**
@@ -48,43 +46,60 @@ A comprehensive Flutter-based social learning application that combines quiz-bas
 
 ## 📱 Screenshots
 
-### Main Navigation & Home
+### 🔑 Login & Sign-up
 
-![Login Screen](assets/images/login.png)
+| Login Screen | Sign-up Screen |
+|--------------|----------------|
+| <a href="assets/images/login.png"><img src="assets/images/login.png" width="250" alt="Login"/></a> | <a href="assets/images/sign-up.png"><img src="assets/images/sign-up.png" width="250" alt="Sign-up"/></a> |
+
 _Login and Register using Firebase Authentication_
 
-### Onboarding Screens
+---
 
-![onboarding Screen](assets/images/onboarding-1.png)
-![onboarding Screen](assets/images/onboarding-2.png)
-![onboarding Screen](assets/images/onboarding-3.png)
-![onboarding Screen](assets/images/intertitial-ad.png)
+### 🛫 Onboarding
 
-### Quiz Interface
+| Screen 1 | Screen 2 | Screen 3 |
+|----------|----------|----------|
+| <a href="assets/images/onboarding-1.png"><img src="assets/images/onboarding-1.png" width="250" alt="Onboarding 1"/></a> | <a href="assets/images/onboarding-2.png"><img src="assets/images/onboarding-2.png" width="250" alt="Onboarding 2"/></a> | <a href="assets/images/onboarding-3.png"><img src="assets/images/onboarding-3.png" width="250" alt="Onboarding 3"/></a> |
 
-![Quiz Screen](assets/images/quiz.png)
-![Quiz Screen](assets/images/quiz-2.png)
-![Quiz Screen](assets/images/quiz-result.png)
-![Quiz Screen](assets/images/quiz-history.png)
+---
+
+### 🧠 Quiz Interface
+
+| Quiz | Quiz Question | Result | History |
+|------|---------------|--------|---------|
+| <a href="assets/images/quiz.png"><img src="assets/images/quiz.png" width="250" alt="Quiz"/></a> | <a href="assets/images/quiz-1.png"><img src="assets/images/quiz-1.png" width="250" alt="Quiz Question"/></a> | <a href="assets/images/quiz-result.png"><img src="assets/images/quiz-result.png" width="250" alt="Result"/></a> | <a href="assets/images/quiz-history.png"><img src="assets/images/quiz-history.png" width="250" alt="History"/></a> |
+
 _Interactive quiz interface with progress tracking and real-time feedback_
 
-### Task Management
+---
 
-![Task Screen](assets/images/task.png)
-![Task Screen](assets/images/task-detail.png)
-_Comprehensive task management with beautiful floating action button_
+### ✅ Task Management
 
-### Real-time Chat
+| Task List | Task Detail |
+|-----------|-------------|
+| <a href="assets/images/task.png"><img src="assets/images/task.png" width="250" alt="Task List"/></a> | <a href="assets/images/task-detail.png"><img src="assets/images/task-detail.png" width="250" alt="Task Detail"/></a> |
 
-![Chat Screen](assets/images/chat.png)
-![Chat Screen](assets/images/chat-detail.png)
+_Comprehensive task management with a floating action button_
+
+---
+
+### 💬 Real-time Chat
+
+| Chat List | Chat Detail |
+|-----------|-------------|
+| <a href="assets/images/chat.png"><img src="assets/images/chat.png" width="250" alt="Chat List"/></a> | <a href="assets/images/chat-detail.png"><img src="assets/images/chat-detail.png" width="250" alt="Chat Detail"/></a> |
+
 _Modern chat interface with real-time messaging capabilities_
 
-### User Profile
+---
 
-![Profile Screen](assets/images/profile.png)
-![Profile Screen](assets/images/profile-2.png)
-![Profile Screen](assets/images/profile-3.png)
+### 👤 User Profile
+
+| Profile 1 | Profile 2 | Profile 3 |
+|-----------|-----------|-----------|
+| <a href="assets/images/profile.png"><img src="assets/images/profile.png" width="250" alt="Profile 1"/></a> | <a href="assets/images/profile-2.png"><img src="assets/images/profile-2.png" width="250" alt="Profile 2"/></a> | <a href="assets/images/profile-3.png"><img src="assets/images/profile-3.png" width="250" alt="Profile 3"/></a> |
+
 _Detailed user profile with learning statistics and achievements_
 
 ## 🚀 Getting Started
