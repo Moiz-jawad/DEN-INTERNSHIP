@@ -1,0 +1,47 @@
+{
+  "rules": {
+    "chatRooms": {
+      "$chatRoomId": {
+        ".read": "data.child('participantIds').hasChild(auth.uid)",
+        ".write": "data.child('participantIds').hasChild(auth.uid) || !data.exists()",
+        "participants": {
+          "$userId": {
+            ".read": "data.child('participantIds').hasChild(auth.uid)",
+            ".write": "auth.uid == $userId || data.child('participantIds').hasChild(auth.uid)"
+          }
+        }
+      }
+    },
+    "messages": {
+      "$chatRoomId": {
+        ".read": "root.child('chatRooms').child($chatRoomId).child('participantIds').hasChild(auth.uid)",
+        ".write": "root.child('chatRooms').child($chatRoomId).child('participantIds').hasChild(auth.uid)",
+        "$messageId": {
+          ".read": "root.child('chatRooms').child($chatRoomId).child('participantIds').hasChild(auth.uid)",
+          ".write": "root.child('chatRooms').child($chatRoomId).child('participantIds').hasChild(auth.uid)",
+          "readBy": {
+            "$userId": {
+              ".read": "root.child('chatRooms').child($chatRoomId).child('participantIds').hasChild(auth.uid)",
+              ".write": "auth.uid == $userId"
+            }
+          }
+        }
+      }
+    },
+    "userPresence": {
+      "$userId": {
+        ".read": "auth.uid == $userId || root.child('chatRooms').child('$chatRoomId').child('participantIds').hasChild(auth.uid)",
+        ".write": "auth.uid == $userId",
+        ".validate": "newData.hasChildren(['userId', 'userName', 'isOnline', 'lastSeen'])"
+      }
+    },
+    "presence": {
+      "$chatRoomId": {
+        ".read": "root.child('chatRooms').child($chatRoomId).child('participantIds').hasChild(auth.uid)",
+        ".write": "root.child('chatRooms').child($chatRoomId).child('participantIds').hasChild(auth.uid)"
+      }
+    },
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}

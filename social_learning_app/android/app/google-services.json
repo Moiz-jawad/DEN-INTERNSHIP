@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "532213397504",
+    "firebase_url": "https://ad-mint-default-rtdb.firebaseio.com",
+    "project_id": "ad-mint",
+    "storage_bucket": "ad-mint.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532213397504:android:2ab4183174264ad1f680e5",
+        "android_client_info": {
+          "package_name": "com.example.social_learning_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOXMnengbAZpZ4W4JpVV1oi5gj4Ti1_LI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
