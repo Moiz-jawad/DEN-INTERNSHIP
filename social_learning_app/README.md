@@ -50,27 +50,41 @@ A comprehensive Flutter-based social learning application that combines quiz-bas
 
 ### Main Navigation & Home
 
-![Main Screen](assets/images/main_screen.png)
-_Beautiful bottom navigation with floating icons and smooth transitions_
+![Login Screen](assets/images/login.png)
+_Login and Register using Firebase Authentication_
+
+### Onboarding Screens
+
+![onboarding Screen](assets/images/onboarding-1.png)
+![onboarding Screen](assets/images/onboarding-2.png)
+![onboarding Screen](assets/images/onboarding-3.png)
+![onboarding Screen](assets/images/intertitial-ad.png)
 
 ### Quiz Interface
 
-![Quiz Screen](assets/images/quiz_screen.png)
+![Quiz Screen](assets/images/quiz.png)
+![Quiz Screen](assets/images/quiz-2.png)
+![Quiz Screen](assets/images/quiz-result.png)
+![Quiz Screen](assets/images/quiz-history.png)
 _Interactive quiz interface with progress tracking and real-time feedback_
 
 ### Task Management
 
-![Task Screen](assets/images/task_screen.png)
+![Task Screen](assets/images/task.png)
+![Task Screen](assets/images/task-detail.png)
 _Comprehensive task management with beautiful floating action button_
 
 ### Real-time Chat
 
-![Chat Screen](assets/images/chat_screen.png)
+![Chat Screen](assets/images/chat.png)
+![Chat Screen](assets/images/chat-detail.png)
 _Modern chat interface with real-time messaging capabilities_
 
 ### User Profile
 
-![Profile Screen](assets/images/profile_screen.png)
+![Profile Screen](assets/images/profile.png)
+![Profile Screen](assets/images/profile-2.png)
+![Profile Screen](assets/images/profile-3.png)
 _Detailed user profile with learning statistics and achievements_
 
 ## 🚀 Getting Started
